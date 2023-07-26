@@ -1,0 +1,8 @@
+# Composer
+/vendor
+composer.lock
+
+# PHPCQ and related tools
+/.phpcq
+.phpcq.yaml
+.phpcs-cache
