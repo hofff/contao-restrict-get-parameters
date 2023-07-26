@@ -16,6 +16,7 @@
         <InternalMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Contao\CoreBundle\Framework\ContaoFramework::createInstance"/>
+                <referencedMethod name="Contao\CoreBundle\Framework\ContaoFramework::initialize"/>
             </errorLevel>
         </InternalMethod>
     </issueHandlers>
