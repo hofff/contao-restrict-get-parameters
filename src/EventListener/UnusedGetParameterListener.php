@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace Hofff\Contao\RestrictGetParameters\EventListener;
 
 use Contao\Config;
-use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\Input;
 use Contao\StringUtil;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 use function array_keys;
 use function array_map;
@@ -20,25 +19,22 @@ use function preg_match;
 use function sprintf;
 use function str_replace;
 
-#[AsHook('initializeSystem')]
 final class UnusedGetParameterListener
 {
     public function __construct(
-        private readonly RequestStack $requestStack,
         private readonly ScopeMatcher $scopeMatcher,
         private readonly ContaoFramework $framework,
     ) {
     }
 
     /** @SuppressWarnings(PHPMD.Superglobals) */
-    public function __invoke(): void
+    public function __invoke(RequestEvent $event): void
     {
         if (! $this->framework->createInstance(Config::class)->get('restrict_get_parameters')) {
             return;
         }
 
-        $request = $this->requestStack->getCurrentRequest();
-        if ($request === null || ! $this->scopeMatcher->isFrontendRequest($request)) {
+        if (! $this->scopeMatcher->isFrontendMainRequest($event)) {
             return;
         }
 
@@ -76,6 +72,6 @@ final class UnusedGetParameterListener
             ),
         );
 
-        return sprintf('#%s#i', implode('|', $pattern));
+        return sprintf('#^%s$#i', implode('|', $pattern));
     }
 }
