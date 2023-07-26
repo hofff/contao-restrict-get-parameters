@@ -33,6 +33,13 @@
       "php-http/discovery": true,
       "contao/manager-plugin": true,
       "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.0.x-dev"
+    },
+    "contao-manager-plugin": "Hofff\\Contao\\RestrictGetParameters\\ContaoManager\\Plugin"
   }
 }
