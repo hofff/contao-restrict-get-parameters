@@ -30,11 +30,13 @@ final class UnusedGetParameterListener
     /** @SuppressWarnings(PHPMD.Superglobals) */
     public function __invoke(RequestEvent $event): void
     {
-        if (! $this->framework->createInstance(Config::class)->get('restrict_get_parameters')) {
+        if (! $this->scopeMatcher->isFrontendMainRequest($event)) {
             return;
         }
 
-        if (! $this->scopeMatcher->isFrontendMainRequest($event)) {
+        $this->framework->initialize();
+
+        if (! $this->framework->createInstance(Config::class)->get('restrict_get_parameters')) {
             return;
         }
 
