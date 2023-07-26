@@ -8,8 +8,8 @@ use Contao\CoreBundle\DataContainer\PaletteManipulator;
     PaletteManipulator::create()
         ->addLegend('restrict_get_parameters_legend', 'chmod_legend')
         ->addField(
-            'deny_unused_get_parameters',
-            'weka_legend',
+            'restrict_get_parameters',
+            'restrict_get_parameters_legend',
             PaletteManipulator::POSITION_APPEND,
         )->applyToPalette('default', 'tl_settings');
 })();
