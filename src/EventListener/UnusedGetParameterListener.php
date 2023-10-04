@@ -74,6 +74,6 @@ final class UnusedGetParameterListener
             ),
         );
 
-        return sprintf('#^%s$#i', implode('|', $pattern));
+        return sprintf('#^(%s)$#i', implode('|', $pattern));
     }
 }
