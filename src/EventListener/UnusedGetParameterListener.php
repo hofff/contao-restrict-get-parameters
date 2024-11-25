@@ -51,7 +51,7 @@ final class UnusedGetParameterListener
 
     private function isKeyWhitelisted(string $key): bool
     {
-        /** @var string|null $pattern */
+        /** @var non-empty-string|null $pattern */
         static $pattern = null;
         if ($pattern === null) {
             $pattern = $this->compilePattern();
@@ -60,6 +60,7 @@ final class UnusedGetParameterListener
         return (bool) preg_match($pattern, $key);
     }
 
+    /** @return non-empty-string */
     private function compilePattern(): string
     {
         $pattern = array_map(
