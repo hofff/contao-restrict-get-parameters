@@ -30,7 +30,8 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['restrict_get_parameters_whitelist']
     'inputType' => 'listWizard',
     'exclude'   => true,
     'eval'      => [
-        'tl_class'          => 'clr',
-        'useRawRequestData' => true,
+        'tl_class'       => 'clr',
+        'decodeEntities' => true,
+        'allowHtml'      => true,
     ],
 ];
