@@ -1,4 +1,4 @@
-name: contao-bootrap-accordion
+name: contao-restrict-get-parameters
 
 on:
   push:
